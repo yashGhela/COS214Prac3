@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Notice.hpp"
 
-Medical::Medical(const std::string& name, int staffCount) : EventComponent(name), staffCount(staffCount) 
+Medical::Medical(const std::string& name, int staffCount) : EventComponent(name), staffCount(staffCount), openForPatients(true), emergencyMode(false)
 {
     status = "standby";
 }
@@ -12,11 +12,15 @@ Medical::~Medical()
 
 void Medical::open() {
     setStatus("active");
+    openForPatients=true;
     std::cout<<name<<" is now active with "<<staffCount<<" staff on duty."<<std::endl;
 }
 
 void Medical::close() {
     setStatus("standby");
+    if(!emergencyMode){
+        openForPatients=false;
+    }
     std::cout<<name<<" is now on standby (still reachable in an emergency)."<<std::endl;
 }
 
@@ -30,7 +34,11 @@ int Medical::getCapacity() const {
 
 void Medical::update(Notice n){
      if ( n==Notice::EVACUATION){
+        emergencyMode=true;
         close();
         std::cout<<name<<" closed"<<std::endl;
+    }else if(n==Notice::CLEAR_WEATHER || n==Notice::RESUMING_OPERATION){
+        emergencyMode=false;
+        open();
     }
 }
