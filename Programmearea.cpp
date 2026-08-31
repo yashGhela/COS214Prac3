@@ -12,7 +12,7 @@ ProgrammeArea::~ProgrammeArea() {
     children.clear();
 }
 
-void ProgrammeArea::add(EventComponent* child) {
+void ProgrammeArea::addAmenity(EventComponent* child) {
     if (child == nullptr) {
         std::cout<<"Warning Attempted to add a null child to "<<name<<std::endl;
         return;

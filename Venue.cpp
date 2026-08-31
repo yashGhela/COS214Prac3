@@ -11,7 +11,7 @@ Venue::~Venue() {
     children.clear();
 }
 
-void Venue::add(EventComponent* child) {
+void Venue::addAmenity(EventComponent* child) {
     if (child == nullptr) {
         std::cout << "Warning Attempted to add a null child to " << name << std::endl;
         return;

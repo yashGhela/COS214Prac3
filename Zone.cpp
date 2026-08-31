@@ -11,7 +11,7 @@ Zone::~Zone() {
     children.clear();
 }
 
-void Zone::add(EventComponent* child) {
+void Zone::addAmenity(EventComponent* child) {
     if (child == nullptr) {
         std::cout << "Warning Attempted to add a null child to " << name << std::endl;
         return;
