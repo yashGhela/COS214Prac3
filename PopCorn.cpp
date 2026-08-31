@@ -55,5 +55,8 @@ void PopCorn::update(Notice n){
     if (n == Notice::RAIN_ALERT || n==Notice::EVACUATION){
         close();
         std::cout<<name<<" closed"<<std::endl;
+    }else if (n==Notice::CLEAR_WEATHER){
+        open();
+        std::cout<<name<<" opening"<<std::endl;
     }
 }
