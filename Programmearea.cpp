@@ -85,3 +85,8 @@ void ProgrammeArea::sendNotice(Notice n){
     controller.sendNotice(n);
 
 }
+
+void ProgrammeArea::transfer(EventComponent* newComp, EventComponent* leaf){
+    newComp->add(leaf);
+    remove(leaf);
+}

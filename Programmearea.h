@@ -23,4 +23,5 @@ class ProgrammeArea : public EventComponent {
     int getCapacity() const override;
     int childCount() const;
     void sendNotice(Notice n);
+    void transfer(EventComponent* newComp, EventComponent* leaf);
 };

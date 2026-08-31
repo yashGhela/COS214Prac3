@@ -32,8 +32,10 @@ void Venue::remove(EventComponent* child) {
             return;
         }
     }
-    std::cout << "Warning That component is not a child of " << name << std::endl;
+    std::cout << "Warning That component is not a child of " << child->getName() << std::endl;
 }
+
+
 
 EventComponent* Venue::getChild(int index) {
     if (index < 0 || index >= static_cast<int>(children.size())) {
@@ -81,4 +83,9 @@ int Venue::childCount() const {
 
 void Venue::sendNotice(Notice n) {
     controller.sendNotice(n);
+}
+
+void Venue::transfer(EventComponent* newComp, EventComponent* leaf){
+    newComp->add(leaf);
+    remove(leaf);
 }

@@ -88,3 +88,8 @@ void Zone::sendNotice(Notice n){
     controller.sendNotice(n);
 
 }
+
+void Zone::transfer(EventComponent* newComp, EventComponent* leaf){
+    newComp->add(leaf);
+    remove(leaf);
+}
