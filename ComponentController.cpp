@@ -10,6 +10,7 @@ ComponentController::~ComponentController() {
     observerList.clear();
 }
 
+
 void ComponentController::attach(Observer* o) {
     if (o == nullptr) {
         std::cout << "Cannot attach a null observer." << std::endl;
