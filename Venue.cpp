@@ -1,7 +1,7 @@
 #include "Venue.h"
 #include <iostream>
 
-Venue::Venue(const std::string& name, int licenseCapacity) : EventComponent(name), licenseCapacity(licenseCapacity) 
+Venue::Venue(const std::string& name, int licenseCapacity) : EventComponent(name), licenseCapacity(licenseCapacity) , openForVisitors(false)
 {}
 
 Venue::~Venue() {
