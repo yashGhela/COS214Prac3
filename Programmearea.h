@@ -4,11 +4,13 @@
 #include <vector>
 #include "ComponentController.h"
 #include "Notice.hpp"
+#include "EventObserver.h"
 
-class ProgrammeArea : public EventComponent {
+class ProgrammeArea : public EventComponent, public EventObserver{
     private:
     std::vector<EventComponent*> children;
     ComponentController controller;
+    int maxcapacity;
 
  
     public:
@@ -24,4 +26,5 @@ class ProgrammeArea : public EventComponent {
     int childCount() const;
     void sendNotice(Notice n);
     void transfer(EventComponent* newComp, EventComponent* leaf);
+    void update(Notice n) override;
 };

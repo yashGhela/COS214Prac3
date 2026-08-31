@@ -5,7 +5,8 @@
 #include "Notice.hpp"
 #include "ComponentController.h"
 
-class Zone : public EventComponent {
+
+class Zone : public EventComponent{
     
     private:
     std::vector<EventComponent*> children;
@@ -25,5 +26,6 @@ class Zone : public EventComponent {
     int childCount() const;
     void sendNotice(Notice n);
     void transfer(EventComponent* newComp, EventComponent* leaf);
+   
 
 };

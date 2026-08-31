@@ -92,3 +92,9 @@ void ProgrammeArea::transfer(EventComponent* newComp, EventComponent* leaf){
     newComp->add(leaf);
     remove(leaf);
 }
+
+void ProgrammeArea::update(Notice n){
+    if (n==Notice::STAGE_DOWN){
+        close();
+    }
+}

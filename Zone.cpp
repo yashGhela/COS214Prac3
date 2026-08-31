@@ -105,3 +105,4 @@ void Zone::transfer(EventComponent* newComp, EventComponent* leaf){
     newComp->add(leaf);
     remove(leaf);
 }
+

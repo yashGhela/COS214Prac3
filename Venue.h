@@ -4,8 +4,9 @@
 #include <vector>
 #include "Notice.hpp"
 #include "ComponentController.h"
+#include "EventObserver.h"
 
-class Venue : public EventComponent {
+class Venue : public EventComponent, public EventObserver{
     
     private:
     std::vector<EventComponent*> children;
@@ -25,6 +26,7 @@ class Venue : public EventComponent {
     int getCapacity() const override;
     int childCount() const;
     void sendNotice(Notice n);
+    void update(Notice n) override;
     
 
 };

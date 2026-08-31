@@ -95,3 +95,9 @@ void Venue::transfer(EventComponent* newComp, EventComponent* leaf){
     newComp->add(leaf);
     remove(leaf);
 }
+
+void Venue::update(Notice n){
+    if (n == Notice::SCREEN_DOWN){
+        close();
+    }
+}
