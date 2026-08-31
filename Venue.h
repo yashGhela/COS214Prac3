@@ -12,9 +12,9 @@ class Venue : public EventComponent {
     public:
     explicit Venue(const std::string& name, int licenseCapacity);
     ~Venue() override;
-    void add(EventComponent* child) override;
+    void addAmenity(EventComponent* child) override;
     void remove(EventComponent* child) override;
-    EventComponent* getChild(int index) override;
+    EventComponent* getChild(int index) const override;
     void open() override;
     void close() override;
     void reportStatus() const override;

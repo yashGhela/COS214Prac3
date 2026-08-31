@@ -11,7 +11,7 @@ ProgrammeArea::~ProgrammeArea() {
     children.clear();
 }
 
-void ProgrammeArea::add(EventComponent* child) {
+void ProgrammeArea::addAmenity(EventComponent* child) {
     if (child == nullptr) {
         std::cout<<"Warning Attempted to add a null child to "<<name<<std::endl;
         return;
@@ -35,7 +35,7 @@ void ProgrammeArea::remove(EventComponent* child) {
     std::cout << "Warning That component is not a child of " << name << "." << std::endl;
 }
 
-EventComponent* ProgrammeArea::getChild(int index) {
+EventComponent* ProgrammeArea::getChild(int index) const {
     if (index < 0 || index >= static_cast<int>(children.size())) {
         std::cout << "Warning getChild(" << index << ") out of range for " << name << std::endl;
         return nullptr;
