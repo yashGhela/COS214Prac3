@@ -10,6 +10,8 @@ class Medical : public EventComponent, public EventObserver {
     private:
     int staffCount;
     static const int PATIENTS_PER_STAFF = 2;
+    bool openForPatients;
+    bool emergencyMode;
 
     public:
     explicit Medical(const std::string& name, int staffCount);

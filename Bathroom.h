@@ -8,6 +8,8 @@ class Bathroom : public EventComponent, public EventObserver{
     private:
     int stalls;
     int occupied;
+    bool openForUse;
+    bool cleaning;
 
     public:
     explicit Bathroom(const std::string& name, int stalls = 4);

@@ -23,6 +23,8 @@ class Screen : public EventComponent, public EventObserver {
         int seatCapacity;
         std::string nowShowing;
         ComponentController controller;
+        bool openForUse;
+        bool projectorWorking;
 
     public:
         /**

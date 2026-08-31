@@ -12,6 +12,8 @@ class Venue : public EventComponent, public EventObserver{
     std::vector<EventComponent*> children;
     int licenseCapacity;
     ComponentController controller;
+    bool openForVisitors;
+
  
     public:
     explicit Venue(const std::string& name, int licenseCapacity);
