@@ -1,7 +1,7 @@
 #include "Venue.h"
 #include <iostream>
 
-Venue::Venue(const std::string& name, int licenseCapacity) : EventComponent(name), licenseCapacity(licenseCapacity) 
+Venue::Venue(const std::string& name, int licenseCapacity) : EventComponent(name), licenseCapacity(licenseCapacity) , openForVisitors(false)
 {}
 
 Venue::~Venue() {
@@ -32,8 +32,10 @@ void Venue::remove(EventComponent* child) {
             return;
         }
     }
-    std::cout << "Warning That component is not a child of " << name << std::endl;
+    std::cout << "Warning That component is not a child of " << child->getName() << std::endl;
 }
+
+
 
 EventComponent* Venue::getChild(int index) const {
     if (index < 0 || index >= static_cast<int>(children.size())) {
@@ -64,6 +66,12 @@ void Venue::reportStatus() const {
     for (const EventComponent* child : children) {
         child->reportStatus();
     }
+
+     if (this->getCapacity()>licenseCapacity){
+        Notice n = Notice::EVACUATION;
+        auto* mutableThis  = const_cast<Venue*>(this);
+        mutableThis->sendNotice(n);
+    }
 }
 
 int Venue::getCapacity() const {
@@ -76,4 +84,20 @@ int Venue::getCapacity() const {
 
 int Venue::childCount() const {
     return static_cast<int>(children.size());
+}
+
+
+void Venue::sendNotice(Notice n) {
+    controller.sendNotice(n);
+}
+
+void Venue::transfer(EventComponent* newComp, EventComponent* leaf){
+    newComp->add(leaf);
+    remove(leaf);
+}
+
+void Venue::update(Notice n){
+    if (n == Notice::SCREEN_DOWN){
+        close();
+    }
 }

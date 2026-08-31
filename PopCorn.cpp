@@ -1,5 +1,7 @@
 #include "PopCorn.h"
 #include <iostream>
+#include "Notice.hpp"
+
 
 PopCorn::PopCorn(const std::string& name, int stockBags) : EventComponent(name), stockBags(stockBags) 
 {}
@@ -46,5 +48,15 @@ void PopCorn::serve() {
 void PopCorn::restock(int bags) {
     if (bags > 0) {
         stockBags += bags;
+    }
+}
+
+void PopCorn::update(Notice n){
+    if (n == Notice::RAIN_ALERT || n==Notice::EVACUATION){
+        close();
+        std::cout<<name<<" closed"<<std::endl;
+    }else if (n==Notice::CLEAR_WEATHER){
+        open();
+        std::cout<<name<<" opening"<<std::endl;
     }
 }

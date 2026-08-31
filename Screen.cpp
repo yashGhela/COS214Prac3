@@ -2,7 +2,7 @@
 #include <iostream>
 
 Screen::Screen(const std::string& name, int seatCapacity)
-    : EventComponent(name), seatCapacity(seatCapacity), nowShowing("")
+    : EventComponent(name), seatCapacity(seatCapacity), nowShowing(""), openForUse(false), projectorWorking(true)
 {}
 
 Screen::~Screen() {}
@@ -22,8 +22,12 @@ void Screen::close() {
 }
 
 void Screen::reportStatus() const {
-    std::cout << name << " status: " << status << ", now showing: "
-               << (nowShowing.empty() ? "(none)" : nowShowing) << ", seats: " << seatCapacity << std::endl;
+    std::cout << "Screen: "
+              << (openForUse ? "open" : "closed")
+              << " | Film: " << nowShowing
+              << " | Projector: "
+              << (projectorWorking ? "working" : "down")
+              << std::endl;
 }
 
 int Screen::getCapacity() const {
@@ -47,6 +51,10 @@ void Screen::update(Notice n) {
         case Notice::TEMPORARILY_CLOSED:
             close();
             break;
+        case Notice::SCREEN_DOWN:
+            projectorWorking=false;
+            close();
+            break;
         default:
             // Screen does not react to notices outside its concern.
             break;
@@ -54,6 +62,5 @@ void Screen::update(Notice n) {
 }
 
 void Screen::sendNotice(Notice n) {
-    controller.setNotice(n);
-    controller.notify();
+    controller.sendNotice(n);
 }

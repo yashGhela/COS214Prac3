@@ -74,6 +74,5 @@ void Stage::update(Notice n) {
 }
 
 void Stage::sendNotice(Notice n) {
-    controller.setNotice(n);
-    controller.notify();
+    controller.sendNotice(n);
 }

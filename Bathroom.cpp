@@ -1,7 +1,7 @@
 #include "Bathroom.h"
 #include <iostream>
 
-Bathroom::Bathroom(const std::string &name, int stalls) : EventComponent(name), stalls(stalls), occupied(0)
+Bathroom::Bathroom(const std::string &name, int stalls) : EventComponent(name), stalls(stalls), occupied(0), openForUse(true), cleaning(false)
 {}
 
 Bathroom::~Bathroom()
@@ -57,5 +57,24 @@ void Bathroom::leaveStall()
     if(occupied > 0)
     {
         occupied--;
+    }
+}
+
+
+void Bathroom::update(Notice n){
+    if (n == Notice::RAIN_ALERT || n==Notice::EVACUATION ){
+        close();
+        std::cout<<name<<" closed"<<std::endl;
+    }else if (n==Notice::CLEAR_WEATHER){
+        open();
+        std::cout<<name<<" opening"<<std::endl;
+    }else if (n==Notice::TEMPORARILY_CLOSED){
+        cleaning=true;
+        close();
+
+    }else if (n==Notice::RESUMING_OPERATION || n==Notice::OPENING){
+        if(!cleaning){
+            open();
+        }
     }
 }

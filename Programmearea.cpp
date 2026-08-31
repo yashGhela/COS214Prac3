@@ -1,7 +1,8 @@
-#include "ProgrammeArea.h"
+#include "Programmearea.h"
+#include "Notice.hpp"
 #include <iostream>
 
-ProgrammeArea::ProgrammeArea(const std::string& name) : EventComponent(name) 
+ProgrammeArea::ProgrammeArea(const std::string& name, int maxcap) : EventComponent(name) , maxcapacity(maxcap)
 {}
 
 ProgrammeArea::~ProgrammeArea() {
@@ -64,6 +65,14 @@ void ProgrammeArea::reportStatus() const {
     for (const EventComponent* child : children) {
         child->reportStatus();
     }
+
+    if (this->getCapacity()>maxcapacity){
+        Notice n = Notice::EVACUATION;
+        auto* mutableThis  = const_cast<ProgrammeArea*>(this);
+        mutableThis->sendNotice(n);
+    }
+
+    
 }
 
 int ProgrammeArea::getCapacity() const {
@@ -76,4 +85,22 @@ int ProgrammeArea::getCapacity() const {
 
 int ProgrammeArea::childCount() const {
     return static_cast<int>(children.size());
+}
+
+
+void ProgrammeArea::sendNotice(Notice n){
+
+    controller.sendNotice(n);
+
+}
+
+void ProgrammeArea::transfer(EventComponent* newComp, EventComponent* leaf){
+    newComp->add(leaf);
+    remove(leaf);
+}
+
+void ProgrammeArea::update(Notice n){
+    if (n==Notice::STAGE_DOWN){
+        close();
+    }
 }
