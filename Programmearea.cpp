@@ -2,7 +2,7 @@
 #include "Notice.hpp"
 #include <iostream>
 
-ProgrammeArea::ProgrammeArea(const std::string& name) : EventComponent(name) 
+ProgrammeArea::ProgrammeArea(const std::string& name, int maxcap) : EventComponent(name) , maxcapacity(maxcap)
 {}
 
 ProgrammeArea::~ProgrammeArea() {
@@ -64,6 +64,12 @@ void ProgrammeArea::reportStatus() const {
     std::cout << name << " status: " << status << ", cildren " << children.size() << std::endl;
     for (const EventComponent* child : children) {
         child->reportStatus();
+    }
+
+    if (this->getCapacity()>maxcapacity){
+        Notice n = Notice::EVACUATION;
+        auto* mutableThis  = const_cast<ProgrammeArea*>(this);
+        mutableThis->sendNotice(n);
     }
 
     

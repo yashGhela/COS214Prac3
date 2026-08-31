@@ -14,7 +14,7 @@ class ProgrammeArea : public EventComponent, public EventObserver{
 
  
     public:
-    explicit ProgrammeArea(const std::string& name);
+    explicit ProgrammeArea(const std::string& name, int maxcap);
     ~ProgrammeArea() override;
     void add(EventComponent* child) override;
     void remove(EventComponent* child) override;
