@@ -1,28 +1,29 @@
 #include "Screen.h"
 #include <iostream>
 
-Screen::Screen(const std::string& name, int seatCapacity) : EventComponent(name), seatCapacity(seatCapacity), nowShowing("") 
+Screen::Screen(const std::string& name, int seatCapacity)
+    : EventComponent(name), seatCapacity(seatCapacity), nowShowing("")
 {}
 
-Screen::~Screen() 
-{}
+Screen::~Screen() {}
 
 void Screen::open() {
     if (nowShowing.empty()) {
-        std::cout<<name<<" cannot open: no film assigned"<<std::endl;
+        std::cout << name << " cannot open: no film assigned" << std::endl;
         return;
     }
     setStatus("open");
-    std::cout<<name<<" is now screening: "<< nowShowing<<std::endl;
+    std::cout << name << " is now screening: " << nowShowing << std::endl;
 }
 
 void Screen::close() {
     setStatus("closed");
-    std::cout<<name<<" has closed."<<std::endl;
+    std::cout << name << " has closed." << std::endl;
 }
 
 void Screen::reportStatus() const {
-    std::cout<<name<<" status: "<<status<<", now showing: "<<(nowShowing.empty() ? "(none)" : nowShowing)<<", seats: "<<seatCapacity<<std::endl;
+    std::cout << name << " status: " << status << ", now showing: "
+               << (nowShowing.empty() ? "(none)" : nowShowing) << ", seats: " << seatCapacity << std::endl;
 }
 
 int Screen::getCapacity() const {
@@ -31,4 +32,28 @@ int Screen::getCapacity() const {
 
 void Screen::setFilm(const std::string& title) {
     nowShowing = title;
+}
+
+void Screen::update(Notice n) {
+    switch (n) {
+        case Notice::EVACUATION:
+        case Notice::RAIN_ALERT:
+            close();
+            std::cout << name << " went dark due to alert." << std::endl;
+            break;
+        case Notice::RESUMING_OPERATION:
+            if (!nowShowing.empty()) open();
+            break;
+        case Notice::TEMPORARILY_CLOSED:
+            close();
+            break;
+        default:
+            // Screen does not react to notices outside its concern.
+            break;
+    }
+}
+
+void Screen::sendNotice(Notice n) {
+    controller.setNotice(n);
+    controller.notify();
 }

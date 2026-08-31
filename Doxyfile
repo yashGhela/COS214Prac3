@@ -1,0 +1,29 @@
+# Minimal Doxyfile for the EventFlow Task 3 (Observer) source set.
+# Run: doxygen Doxyfile   (from this directory)
+# Output goes to docs/html/index.html
+
+PROJECT_NAME           = "EventFlow"
+PROJECT_BRIEF          = "Live Event Coordination Engine - COS214 Prac 3"
+OUTPUT_DIRECTORY       = docs
+
+INPUT                  = .
+FILE_PATTERNS          = *.h *.hpp *.cpp
+RECURSIVE              = YES
+
+EXTRACT_ALL             = NO
+EXTRACT_PRIVATE         = NO
+EXTRACT_STATIC          = NO
+HIDE_UNDOC_MEMBERS      = NO
+HIDE_UNDOC_CLASSES      = NO
+WARN_IF_UNDOCUMENTED    = YES
+WARN_IF_DOC_ERROR       = YES
+WARN_NO_PARAMDOC        = YES
+
+GENERATE_HTML           = YES
+GENERATE_LATEX          = NO
+GENERATE_TREEVIEW       = YES
+
+CLASS_DIAGRAMS          = YES
+HAVE_DOT                = NO
+
+QUIET                   = NO
