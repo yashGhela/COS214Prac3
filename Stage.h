@@ -79,4 +79,18 @@ class Stage : public EventComponent, public EventObserver {
          * @param n Notice to broadcast.
          */
         void sendNotice(Notice n);
+
+        /**
+         * @brief Registers an observer to receive future notices broadcast
+         * by this stage's controller. Delegates to the controller's attach().
+         * @param o Observer to register. Non-owning.
+         */
+        void attachObserver(Observer* o);
+
+        /**
+         * @brief Deregisters an observer from this stage's controller.
+         * @param o Observer to remove.
+         */
+        void detachObserver(Observer* o);
+
 };

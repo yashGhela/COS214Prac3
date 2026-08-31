@@ -4,5 +4,3 @@
 EventObserver::EventObserver(){}
 
 EventObserver::~EventObserver(){}
-
-void EventObserver::update(Notice n){}

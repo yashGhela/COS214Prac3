@@ -12,7 +12,7 @@ ProgrammeArea::~ProgrammeArea() {
     children.clear();
 }
 
-void ProgrammeArea::addAmenity(EventComponent* child) {
+void ProgrammeArea::add(EventComponent* child) {
     if (child == nullptr) {
         std::cout<<"Warning Attempted to add a null child to "<<name<<std::endl;
         return;
@@ -94,6 +94,16 @@ void ProgrammeArea::sendNotice(Notice n){
 
 }
 
+void ProgrammeArea::attachObserver(Observer* o)
+{
+    controller.attach(o);
+}
+
+void ProgrammeArea::detachObserver(Observer* o)
+{
+    controller.detach(o);
+}
+
 void ProgrammeArea::transfer(EventComponent* newComp, EventComponent* leaf){
     newComp->add(leaf);
     remove(leaf);
@@ -103,4 +113,5 @@ void ProgrammeArea::update(Notice n){
     if (n==Notice::STAGE_DOWN){
         close();
     }
+    sendNotice(n);
 }

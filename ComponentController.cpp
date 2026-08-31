@@ -6,7 +6,6 @@
 ComponentController::ComponentController() : currentNotice(Notice::CLOSING) {}
 
 ComponentController::~ComponentController() {
-    // Non-owning: deliberately does NOT delete observers.
     observerList.clear();
 }
 

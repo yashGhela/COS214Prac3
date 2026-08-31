@@ -87,6 +87,19 @@ class Venue : public EventComponent, public EventObserver{
    void sendNotice(Notice n);
 
    /**
+    * @brief Registers an observer to receive future notices broadcast
+    * by this venue's controller. Delegates to the controller's attach().
+    * @param o Observer to register. Non-owning.
+    */
+   void attachObserver(Observer* o);
+
+   /**
+    * @brief Deregisters an observer from this venue's controller.
+    * @param o Observer to remove.
+    */
+   void detachObserver(Observer* o);
+
+   /**
     * @brief Reacts to a notice received from a parent subject.
     * @param n Notice received by this venue.
     */

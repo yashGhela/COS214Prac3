@@ -20,8 +20,7 @@ void Stage::close() {
 }
 
 void Stage::reportStatus() const {
-    std::cout << name << " status: " << status << ", paused: " << paused
-               << ", act: " << currentFilm << ", capacity: " << audienceCapacity << std::endl;
+    std::cout << name << " status: " << status << ", paused: " << paused<< ", act: " << currentFilm << ", capacity: " << audienceCapacity << std::endl;
 }
 
 int Stage::getCapacity() const {
@@ -68,11 +67,18 @@ void Stage::update(Notice n) {
             close();
             break;
         default:
-            // Stage does not react to notices outside its concern.
             break;
     }
 }
 
 void Stage::sendNotice(Notice n) {
     controller.sendNotice(n);
+}
+
+void Stage::attachObserver(Observer* o) {
+    controller.attach(o);
+}
+
+void Stage::detachObserver(Observer* o) {
+    controller.detach(o);
 }

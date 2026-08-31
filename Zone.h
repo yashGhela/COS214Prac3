@@ -78,6 +78,19 @@ class Zone : public EventComponent{
    void sendNotice(Notice n);
 
    /**
+    * @brief Registers an observer to receive future notices broadcast
+    * by this zone's controller. Delegates to the controller's attach().
+    * @param o Observer to register. Non-owning.
+    */
+   void attachObserver(Observer* o);
+
+   /**
+    * @brief Deregisters an observer from this zone's controller.
+    * @param o Observer to remove.
+    */
+   void detachObserver(Observer* o);
+
+   /**
     * @brief Transfers a leaf from this zone to another Composite.
     * @param newComp Destination component that will receive the leaf.
     * @param leaf Leaf component to transfer.

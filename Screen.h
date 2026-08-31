@@ -67,4 +67,18 @@ class Screen : public EventComponent, public EventObserver {
          * @param n Notice to broadcast.
          */
         void sendNotice(Notice n);
+
+        /**
+         * @brief Registers an observer to receive future notices broadcast
+         * by this screen's controller. Delegates to the controller's attach().
+         * @param o Observer to register. Non-owning.
+         */
+        void attachObserver(Observer* o);
+
+        /**
+         * @brief Deregisters an observer from this screen's controller.
+         * @param o Observer to remove.
+         */
+        void detachObserver(Observer* o);
+
 };

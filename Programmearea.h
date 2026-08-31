@@ -78,6 +78,19 @@ class ProgrammeArea : public EventComponent, public EventObserver{
    void sendNotice(Notice n);
 
    /**
+    * @brief Registers an observer to receive future notices broadcast
+    * by this area's controller. Delegates to the controller's attach().
+    * @param o Observer to register. Non-owning.
+    */
+   void attachObserver(Observer* o);
+
+   /**
+    * @brief Deregisters an observer from this area's controller.
+    * @param o Observer to remove.
+    */
+   void detachObserver(Observer* o);
+
+   /**
     * @brief Transfers a leaf from this Composite to another Composite.
     * @param newComp Destination component that will receive the leaf.
     * @param leaf Leaf component to transfer.

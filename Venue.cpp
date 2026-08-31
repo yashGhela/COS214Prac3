@@ -11,7 +11,7 @@ Venue::~Venue() {
     children.clear();
 }
 
-void Venue::addAmenity(EventComponent* child) {
+void Venue::add(EventComponent* child) {
     if (child == nullptr) {
         std::cout << "Warning Attempted to add a null child to " << name << std::endl;
         return;
@@ -86,9 +86,18 @@ int Venue::childCount() const {
     return static_cast<int>(children.size());
 }
 
-
 void Venue::sendNotice(Notice n) {
     controller.sendNotice(n);
+}
+
+void Venue::attachObserver(Observer* o) 
+{
+    controller.attach(o);
+}
+
+void Venue::detachObserver(Observer* o) 
+{
+    controller.detach(o);
 }
 
 void Venue::transfer(EventComponent* newComp, EventComponent* leaf){

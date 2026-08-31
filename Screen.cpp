@@ -56,11 +56,18 @@ void Screen::update(Notice n) {
             close();
             break;
         default:
-            // Screen does not react to notices outside its concern.
             break;
     }
 }
 
 void Screen::sendNotice(Notice n) {
     controller.sendNotice(n);
+}
+
+void Screen::attachObserver(Observer* o) {
+    controller.attach(o);
+}
+
+void Screen::detachObserver(Observer* o) {
+    controller.detach(o);
 }

@@ -11,7 +11,7 @@ Zone::~Zone() {
     children.clear();
 }
 
-void Zone::addAmenity(EventComponent* child) {
+void Zone::add(EventComponent* child) {
     if (child == nullptr) {
         std::cout << "Warning Attempted to add a null child to " << name << std::endl;
         return;
@@ -76,8 +76,6 @@ void Zone::reportStatus() const {
     }
 }
 
-
-
 int Zone::getCapacity() const {
     int total = 0;
     for (const EventComponent* child : children) {
@@ -99,6 +97,16 @@ void Zone::sendNotice(Notice n){
         close();
     }
 
+}
+
+void Zone::attachObserver(Observer* o) 
+{
+    controller.attach(o);
+}
+
+void Zone::detachObserver(Observer* o) 
+{
+    controller.detach(o);
 }
 
 void Zone::transfer(EventComponent* newComp, EventComponent* leaf){
