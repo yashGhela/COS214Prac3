@@ -2,8 +2,10 @@
  
 #include "EventComponent.h"
 #include <string>
+#include "EventObserver.h"
+#include "Notice.hpp"
 
-class FoodTruck : public EventComponent {
+class FoodTruck : public EventComponent, public EventObserver {
     
     private:
     std::string location;
@@ -18,5 +20,7 @@ class FoodTruck : public EventComponent {
     int getCapacity() const override;
     void relocate(const std::string& newLocation);
     std::string getLocation() const;
+
+    void update(Notice n) override;
     
 };

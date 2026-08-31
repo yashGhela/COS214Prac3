@@ -81,3 +81,10 @@ int Zone::getCapacity() const {
 int Zone::childCount() const {
     return static_cast<int>(children.size());
 }
+
+
+void Zone::sendNotice(Notice n){
+
+    controller.sendNotice(n);
+
+}

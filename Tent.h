@@ -2,8 +2,10 @@
  
 #include "EventComponent.h"
 #include <string>
+#include "Notice.hpp"
+#include "EventObserver.h"
 
-class Tent : public EventComponent {
+class Tent : public EventComponent, public EventObserver {
     
     private:
     int seatingCapacity;
@@ -15,6 +17,7 @@ class Tent : public EventComponent {
     void close() override;
     void reportStatus() const override;
     int getCapacity() const override;
+    void update(Notice n) override;
 
 };
 

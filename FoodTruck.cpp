@@ -1,5 +1,6 @@
 #include "FoodTruck.h"
 #include <iostream>
+#include "Notice.hpp"
 
 FoodTruck::FoodTruck(const std::string& name, const std::string& location, int queueCapacity) : EventComponent(name), location(location), queueCapacity(queueCapacity) 
 {}
@@ -32,4 +33,10 @@ void FoodTruck::relocate(const std::string& newLocation) {
 
 std::string FoodTruck::getLocation() const {
     return location;
+}
+
+void FoodTruck::update(Notice n){
+    if (n == Notice::RAIN_ALERT){
+        close();
+    }
 }

@@ -5,7 +5,7 @@ EventComponent::EventComponent(const std::string& name) : name(name), status("cl
 
 EventComponent::~EventComponent() {}
 
-void EventComponent::addAmenity(EventComponent* child) {
+void EventComponent::add(EventComponent* child) {
     std::cout << name << " cannot contain children (it is a leaf)." << std::endl;
 }
 

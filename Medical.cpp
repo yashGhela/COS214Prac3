@@ -1,5 +1,6 @@
 #include "Medical.h"
 #include <iostream>
+#include "Notice.hpp"
 
 Medical::Medical(const std::string& name, int staffCount) : EventComponent(name), staffCount(staffCount) 
 {
@@ -25,4 +26,8 @@ void Medical::reportStatus() const {
 
 int Medical::getCapacity() const {
     return staffCount * PATIENTS_PER_STAFF;
+}
+
+void Medical::update(Notice n){
+    
 }

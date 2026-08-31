@@ -24,3 +24,9 @@ void Tent::reportStatus() const {
 int Tent::getCapacity() const {
     return seatingCapacity;
 }
+
+void Tent::update(Notice n){
+    if (n == Notice::RAIN_ALERT){
+        close();
+    }
+}

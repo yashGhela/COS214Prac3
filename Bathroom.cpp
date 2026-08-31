@@ -59,3 +59,10 @@ void Bathroom::leaveStall()
         occupied--;
     }
 }
+
+
+void Bathroom::update(Notice n){
+    if (n == Notice::RAIN_ALERT){
+        close();
+    }
+}

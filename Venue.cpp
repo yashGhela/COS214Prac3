@@ -77,3 +77,8 @@ int Venue::getCapacity() const {
 int Venue::childCount() const {
     return static_cast<int>(children.size());
 }
+
+
+void Venue::sendNotice(Notice n) {
+    controller.sendNotice(n);
+}

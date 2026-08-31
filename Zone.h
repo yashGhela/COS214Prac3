@@ -2,12 +2,15 @@
  
 #include "EventComponent.h"
 #include <vector>
+#include "Notice.hpp"
+#include "ComponentController.h"
 
 class Zone : public EventComponent {
     
     private:
     std::vector<EventComponent*> children;
     int ratedCapacity;
+    ComponentController controller;
  
     public:
     explicit Zone(const std::string& name, int ratedCapacity);
@@ -20,5 +23,6 @@ class Zone : public EventComponent {
     void reportStatus() const override;
     int getCapacity() const override;
     int childCount() const;
+    void sendNotice(Notice n);
 
 };

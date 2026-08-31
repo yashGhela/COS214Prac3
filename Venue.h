@@ -2,6 +2,7 @@
  
 #include "EventComponent.h"
 #include <vector>
+#include "Notice.hpp"
 
 class Venue : public EventComponent {
     
@@ -20,5 +21,6 @@ class Venue : public EventComponent {
     void reportStatus() const override;
     int getCapacity() const override;
     int childCount() const;
+    void sendNotice(Notice n);
 
 };

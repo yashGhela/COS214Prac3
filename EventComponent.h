@@ -48,7 +48,7 @@ class EventComponent {
          * @param child Component to add. Ownership rules are defined by the
          * overriding Composite subclass, not by this base default.
          */
-        virtual void addAmenity(EventComponent* child);
+        virtual void add(EventComponent* child);
 
         /**
          * @brief Remove a child component. Default: no-op (Leaves have no children).

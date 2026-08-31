@@ -1,4 +1,5 @@
 #include "ProgrammeArea.h"
+#include "Notice.hpp"
 #include <iostream>
 
 ProgrammeArea::ProgrammeArea(const std::string& name) : EventComponent(name) 
@@ -76,4 +77,11 @@ int ProgrammeArea::getCapacity() const {
 
 int ProgrammeArea::childCount() const {
     return static_cast<int>(children.size());
+}
+
+
+void ProgrammeArea::sendNotice(Notice n){
+
+    controller.sendNotice(n);
+
 }

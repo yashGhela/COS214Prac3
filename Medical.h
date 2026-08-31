@@ -2,8 +2,10 @@
  
 #include "EventComponent.h"
 #include <string>
+#include "Notice.hpp"
+#include "EventObserver.h"
 
-class Medical : public EventComponent {
+class Medical : public EventComponent, public EventObserver {
     
     private:
     int staffCount;
@@ -16,4 +18,5 @@ class Medical : public EventComponent {
     void close() override;
     void reportStatus() const override;
     int getCapacity() const override;
+    void update(Notice n) override;
 };

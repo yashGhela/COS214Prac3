@@ -2,10 +2,14 @@
  
 #include "EventComponent.h"
 #include <vector>
+#include "ComponentController.h"
+#include "Notice.hpp"
 
 class ProgrammeArea : public EventComponent {
     private:
     std::vector<EventComponent*> children;
+    ComponentController controller;
+
  
     public:
     explicit ProgrammeArea(const std::string& name);
@@ -18,5 +22,5 @@ class ProgrammeArea : public EventComponent {
     void reportStatus() const override;
     int getCapacity() const override;
     int childCount() const;
-
+    void sendNotice(Notice n);
 };

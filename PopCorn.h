@@ -2,8 +2,10 @@
  
 #include "EventComponent.h"
 #include <string>
+#include "Notice.hpp"
+#include "EventObserver.h"
 
-class PopCorn : public EventComponent {
+class PopCorn : public EventComponent, public EventObserver {
     
     private:
     int stockBags;
@@ -17,5 +19,6 @@ class PopCorn : public EventComponent {
     int getCapacity() const override;
     void serve();
     void restock(int bags);
+    void update(Notice n);
 
 };

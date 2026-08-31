@@ -1,8 +1,9 @@
 #pragma once
 #include "EventComponent.h"
 #include <string>
+#include "EventObserver.h"
 
-class Bathroom : public EventComponent{
+class Bathroom : public EventComponent, public EventObserver{
 
     private:
     int stalls;
@@ -17,5 +18,6 @@ class Bathroom : public EventComponent{
     int getCapacity() const override;
     void enterStall();
     void leaveStall();
+    void update(Notice n) override;
 
 };
