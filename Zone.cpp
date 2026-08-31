@@ -35,7 +35,7 @@ void Zone::remove(EventComponent* child) {
     std::cout << "Warning That component is not a child of " << name << std::endl;
 }
 
-EventComponent* Zone::getChild(int index) {
+EventComponent* Zone::getChild(int index) const{
     if (index < 0 || index >= static_cast<int>(children.size())) {
         std::cout << "Warning getChild(" << index << ") out of range for " << name << std::endl;
         return nullptr;
@@ -68,7 +68,15 @@ void Zone::reportStatus() const {
     for (const EventComponent* child : children) {
         child->reportStatus();
     }
+
+    if (this->getCapacity()>ratedCapacity){
+        Notice n = Notice::EVACUATION;
+        auto* mutableThis  = const_cast<Zone*>(this);
+        mutableThis->sendNotice(n);
+    }
 }
+
+
 
 int Zone::getCapacity() const {
     int total = 0;
@@ -86,6 +94,10 @@ int Zone::childCount() const {
 void Zone::sendNotice(Notice n){
 
     controller.sendNotice(n);
+
+    if (n == Notice::RAIN_ALERT){
+        close();
+    }
 
 }
 

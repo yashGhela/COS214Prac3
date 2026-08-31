@@ -36,7 +36,8 @@ std::string FoodTruck::getLocation() const {
 }
 
 void FoodTruck::update(Notice n){
-    if (n == Notice::RAIN_ALERT){
+     if (n == Notice::RAIN_ALERT || n==Notice::EVACUATION){
         close();
+        std::cout<<name<<" closed"<<std::endl;
     }
 }

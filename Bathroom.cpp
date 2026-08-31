@@ -62,7 +62,8 @@ void Bathroom::leaveStall()
 
 
 void Bathroom::update(Notice n){
-    if (n == Notice::RAIN_ALERT){
+    if (n == Notice::RAIN_ALERT || n==Notice::EVACUATION){
         close();
+        std::cout<<name<<" closed"<<std::endl;
     }
 }

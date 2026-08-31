@@ -1,4 +1,4 @@
-#include "ProgrammeArea.h"
+#include "Programmearea.h"
 #include "Notice.hpp"
 #include <iostream>
 
@@ -36,7 +36,7 @@ void ProgrammeArea::remove(EventComponent* child) {
     std::cout << "Warning That component is not a child of " << name << "." << std::endl;
 }
 
-EventComponent* ProgrammeArea::getChild(int index) {
+EventComponent* ProgrammeArea::getChild(int index) const {
     if (index < 0 || index >= static_cast<int>(children.size())) {
         std::cout << "Warning getChild(" << index << ") out of range for " << name << std::endl;
         return nullptr;
@@ -65,6 +65,8 @@ void ProgrammeArea::reportStatus() const {
     for (const EventComponent* child : children) {
         child->reportStatus();
     }
+
+    
 }
 
 int ProgrammeArea::getCapacity() const {

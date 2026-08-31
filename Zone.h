@@ -17,7 +17,7 @@ class Zone : public EventComponent {
     ~Zone() override;
     void add(EventComponent* child) override;
     void remove(EventComponent* child) override;
-    EventComponent* getChild(int index) override;
+    EventComponent* getChild(int index) const override;
     void open() override;
     void close() override;
     void reportStatus() const override;

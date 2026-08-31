@@ -1,5 +1,6 @@
 #include "Tent.h"
 #include <iostream>
+using namespace std;
 
 Tent::Tent(const std::string& name, int seatingCapacity) : EventComponent(name), seatingCapacity(seatingCapacity)
 {}
@@ -26,7 +27,8 @@ int Tent::getCapacity() const {
 }
 
 void Tent::update(Notice n){
-    if (n == Notice::RAIN_ALERT){
+    if (n == Notice::RAIN_ALERT || n==Notice::EVACUATION){
         close();
+        std::cout<<name<<" closed"<<std::endl;
     }
 }

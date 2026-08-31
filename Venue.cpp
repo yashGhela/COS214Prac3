@@ -37,7 +37,7 @@ void Venue::remove(EventComponent* child) {
 
 
 
-EventComponent* Venue::getChild(int index) {
+EventComponent* Venue::getChild(int index) const {
     if (index < 0 || index >= static_cast<int>(children.size())) {
         std::cout << "Warning getChild(" << index << ") out of range for " << name << std::endl;
         return nullptr;
@@ -65,6 +65,12 @@ void Venue::reportStatus() const {
     std::cout << name << " status: " << status<< ", license capacity: " << licenseCapacity<< ", children: " << children.size() << std::endl;
     for (const EventComponent* child : children) {
         child->reportStatus();
+    }
+
+     if (this->getCapacity()>licenseCapacity){
+        Notice n = Notice::EVACUATION;
+        auto* mutableThis  = const_cast<Venue*>(this);
+        mutableThis->sendNotice(n);
     }
 }
 

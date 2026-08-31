@@ -18,7 +18,7 @@ class Venue : public EventComponent {
     void add(EventComponent* child) override;
     void remove(EventComponent* child) override;
     void transfer(EventComponent* newComp, EventComponent* leaf);
-    EventComponent* getChild(int index) override;
+    EventComponent* getChild(int index) const override;
     void open() override;
     void close() override;
     void reportStatus() const override;

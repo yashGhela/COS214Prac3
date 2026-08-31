@@ -29,5 +29,8 @@ int Medical::getCapacity() const {
 }
 
 void Medical::update(Notice n){
-    
+     if ( n==Notice::EVACUATION){
+        close();
+        std::cout<<name<<" closed"<<std::endl;
+    }
 }
